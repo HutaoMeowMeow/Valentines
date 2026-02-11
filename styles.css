@@ -1,0 +1,675 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    background: linear-gradient(135deg, #ffeef8 0%, #ffe5f0 50%, #ffd9e8 100%);
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+    touch-action: manipulation;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Landing Page */
+.landing-page {
+    background: linear-gradient(135deg, #ffeef8 0%, #ffe5f0 50%, #ffd9e8 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Allow text selection for content */
+.content, .letter-paper, .handwritten-text, .final-text {
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
+}
+
+/* Ensure envelope is clickable */
+.envelope, .envelope-container {
+    -webkit-user-select: auto;
+    -moz-user-select: auto;
+    -ms-user-select: auto;
+    user-select: auto;
+    pointer-events: auto;
+    cursor: pointer;
+    z-index: 1000;
+    position: relative;
+}
+
+/* Floating Hearts Background */
+.hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* Text-specific floating hearts */
+.text-hearts-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.heart {
+    position: absolute;
+    font-size: 20px;
+    opacity: 0;
+    animation: floatHeart 15s infinite;
+}
+
+.text-heart {
+    position: absolute;
+    font-size: 16px;
+    opacity: 0.3;
+    animation: floatTextHeart 8s infinite ease-in-out;
+    color: rgba(255, 107, 157, 0.4);
+    filter: blur(1px);
+}
+
+.heart-balloon {
+    position: absolute;
+    font-size: 36px;
+    opacity: 0.7;
+    animation: floatBalloon 12s infinite ease-in-out;
+    color: rgba(255, 107, 157, 0.8);
+    filter: drop-shadow(0 3px 6px rgba(255, 107, 157, 0.4));
+}
+
+.heart-balloon::after {
+    content: '🎈';
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 12px;
+    opacity: 0.9;
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.6;
+    }
+    90% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes floatTextHeart {
+    0% {
+        transform: translateY(20px) translateX(0px) rotate(0deg);
+        opacity: 0;
+    }
+    25% {
+        opacity: 0.3;
+    }
+    50% {
+        transform: translateY(-10px) translateX(10px) rotate(180deg);
+        opacity: 0.2;
+    }
+    75% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateY(20px) translateX(0px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@keyframes floatBalloon {
+    0% {
+        transform: translateY(30px) translateX(0px) rotate(-5deg);
+        opacity: 0;
+    }
+    20% {
+        opacity: 0.6;
+    }
+    40% {
+        transform: translateY(-20px) translateX(15px) rotate(5deg);
+        opacity: 0.7;
+    }
+    60% {
+        transform: translateY(-40px) translateX(-10px) rotate(-3deg);
+        opacity: 0.6;
+    }
+    80% {
+        opacity: 0.5;
+    }
+    100% {
+        transform: translateY(-60px) translateX(5px) rotate(0deg);
+        opacity: 0;
+    }
+}
+
+/* Navigation Controls */
+.nav-controls {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 1000;
+}
+
+.control-btn {
+    background: rgba(255, 255, 255, 0.95);
+    color: #d4396c;
+    border: 2px solid #d4396c;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.control-btn:hover {
+    background: #d4396c;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(212, 57, 108, 0.3);
+}
+
+/* Music Toggle */
+.music-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.music-toggle:hover {
+    transform: scale(1.1);
+}
+
+.music-icon {
+    font-size: 24px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Section Base Styles */
+section {
+    min-height: 100vh;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+section.active {
+    display: flex;
+}
+
+/* Landing Page */
+.landing-page .content {
+    text-align: center;
+    max-width: 600px;
+}
+
+.landing-page h1 {
+    font-size: 4.5rem;
+    color: #d4396c;
+    margin-bottom: 20px;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: #8b4f6f;
+    margin-bottom: 10px;
+}
+
+.instruction {
+    font-size: 1.2rem;
+    color: #a86d89;
+    margin-bottom: 50px;
+}
+
+.fade-in {
+    animation: fadeIn 1s ease-in;
+    font-family: 'Great Vibes', cursive;
+    font-size: 4rem;
+    background: linear-gradient(45deg, #ff6b9d, #c66cfd, #feca57);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 30px rgba(255, 107, 157, 0.3);
+    letter-spacing: 3px;
+    font-weight: 400;
+}
+
+.fade-in-delay {
+    animation: fadeIn 1s ease-in 0.5s backwards;
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.5rem;
+    background: linear-gradient(45deg, #ff6b9d, #c66cfd, #feca57);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(255, 107, 157, 0.2);
+    letter-spacing: 2px;
+    font-weight: 400;
+}
+
+.fade-in-delay-2 {
+    animation: fadeIn 1s ease-in 1s backwards;
+    font-family: 'Great Vibes', cursive;
+    font-size: 2rem;
+    background: linear-gradient(45deg, #ff6b9d, #c66cfd, #feca57);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 15px rgba(255, 107, 157, 0.2);
+    letter-spacing: 1.5px;
+    font-weight: 400;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Envelope Animation */
+.envelope-container {
+    position: relative;
+    margin-top: 50px;
+}
+
+.envelope {
+    width: 220px;
+    height: 150px;
+    position: relative;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 15px 35px rgba(212, 57, 108, 0.4));
+}
+
+.envelope:hover {
+    transform: scale(1.08);
+}
+
+.envelope-body {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #fff 0%, #fffcfd 100%);
+    border: 3px solid #d4396c;
+    border-radius: 8px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(212, 57, 108, 0.3),
+                inset 0 -2px 10px rgba(212, 57, 108, 0.1);
+}
+
+.envelope-flap {
+    width: 0;
+    height: 0;
+    border-left: 100px solid transparent;
+    border-right: 100px solid transparent;
+    border-top: 70px solid #ffc9d9;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: top center;
+    transition: transform 1s ease;
+    z-index: 2;
+}
+
+.envelope.opening .envelope-flap {
+    transform: rotateX(180deg);
+}
+
+.heart-seal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    animation: heartBeat 1.5s infinite;
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    25% { transform: translate(-50%, -50%) scale(1.1); }
+}
+
+.hold-instruction {
+    margin-top: 30px;
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.8rem;
+    background: linear-gradient(45deg, #ff6b9d, #c66cfd, #feca57);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 15px rgba(255, 107, 157, 0.2);
+    letter-spacing: 1px;
+    font-weight: 400;
+    opacity: 0;
+    animation: fadeIn 1s ease-in 1.5s forwards;
+}
+
+.progress-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    animation: fadeIn 1s ease-in 1.5s forwards;
+}
+
+.progress-ring-circle {
+    fill: none;
+    stroke: #ff6b9d;
+    stroke-width: 6;
+    stroke-dasharray: 339.292;
+    stroke-dashoffset: 339.292;
+    transform: rotate(-90deg);
+    transform-origin: center;
+    transition: stroke-dashoffset 0.1s linear;
+    filter: drop-shadow(0 0 8px rgba(255, 107, 157, 0.5));
+}
+
+/* Letter Layer - IMPROVED READABILITY */
+.letter-layer {
+    background: linear-gradient(135deg, #fff5f8 0%, #ffe9f0 100%);
+    height: 100vh;
+    overflow: hidden;
+}
+
+.letter-content {
+    max-width: 700px;
+    width: 100%;
+}
+
+.letter-paper {
+    background: #fff;
+    padding: 60px 50px;
+    border-radius: 15px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    position: relative;
+    border: 2px solid #f0c9d9;
+    animation: slideUp 0.8s ease;
+}
+
+@keyframes slideUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(50px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+.letter-paper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 100%;
+    background: linear-gradient(180deg, #d4396c, #ff6b9d);
+    border-radius: 15px 0 0 15px;
+}
+
+/* IMPROVED: Decorative header keeps gradient */
+.handwritten {
+    font-family: 'Great Vibes', cursive;
+    font-weight: 400;
+    font-size: 2.8rem;
+    background: linear-gradient(45deg, #ff6b9d, #c66cfd, #feca57);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 25px rgba(255, 107, 157, 0.3);
+    letter-spacing: 2px;
+    margin-bottom: 1.5rem;
+}
+
+/* IMPROVED: Body text is now solid and readable */
+.handwritten-text {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.7rem;
+    line-height: 2;
+    color: #3a3a3a;
+    letter-spacing: 0.5px;
+    font-weight: 400;
+    margin-bottom: 1.5rem;
+    text-shadow: none;
+}
+
+/* IMPROVED: Signature keeps some style but more readable */
+.signature {
+    font-family: 'Great Vibes', cursive;
+    font-weight: 400;
+    font-size: 1.9rem;
+    color: #d4396c;
+    text-align: right;
+    margin-top: 40px;
+    letter-spacing: 1px;
+}
+
+/* Continue Button */
+.continue-btn {
+    background: linear-gradient(135deg, #d4396c, #ff6b9d);
+    color: white;
+    border: none;
+    padding: 16px 45px;
+    font-size: 1.15rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 30px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 10px 30px rgba(212, 57, 108, 0.4);
+    transition: all 0.3s ease;
+    letter-spacing: 0.3px;
+}
+
+.continue-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(212, 57, 108, 0.5);
+    background: linear-gradient(135deg, #ff6b9d, #d4396c);
+}
+
+/* Progress Indicator */
+.progress-indicator {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px 25px;
+    border-radius: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#progressText {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #d4396c;
+}
+
+.progress-hearts {
+    display: flex;
+    gap: 5px;
+}
+
+.progress-heart {
+    font-size: 1.2rem;
+    opacity: 0.3;
+    transition: all 0.3s ease;
+    filter: grayscale(100%);
+}
+
+.progress-heart.filled {
+    opacity: 1;
+    filter: grayscale(0%);
+    animation: heartPop 0.5s ease;
+}
+
+@keyframes heartPop {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+}
+
+/* Easter Egg */
+.easter-egg {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+}
+
+.easter-egg-content {
+    background: rgba(255, 255, 255, 0.95);
+    color: #d4396c;
+    padding: 20px 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
+}
+
+.easter-egg-content.revealed {
+    max-height: 200px;
+}
+
+.easter-egg-content p {
+    margin: 10px 0;
+    font-size: 1.2rem;
+}
+
+/* Utility Classes */
+.hidden {
+    display: none !important;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    /* Base mobile optimizations */
+    body {
+        font-size: 16px;
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+    }
+    
+    /* Text sizing for mobile */
+    .fade-in {
+        font-size: 2.8rem !important;
+        letter-spacing: 2px !important;
+    }
+    
+    .fade-in-delay {
+        font-size: 1.8rem !important;
+        letter-spacing: 1.5px !important;
+    }
+    
+    .fade-in-delay-2 {
+        font-size: 1.5rem !important;
+        letter-spacing: 1px !important;
+    }
+    
+    .hold-instruction {
+        font-size: 1.4rem !important;
+        letter-spacing: 0.8px !important;
+    }
+    
+    /* Letter paper mobile */
+    .letter-paper {
+        padding: 30px 20px !important;
+        margin: 20px 10px;
+    }
+    
+    .handwritten {
+        font-size: 2rem !important;
+    }
+    
+    .handwritten-text {
+        font-size: 1.3rem !important;
+        line-height: 1.8 !important;
+    }
+    
+    .signature {
+        font-size: 1.5rem !important;
+    }
+    
+    /* Navigation mobile */
+    .nav-controls {
+        top: 10px !important;
+        left: 10px !important;
+    }
+    
+    .control-btn {
+        padding: 10px 16px !important;
+        font-size: 0.9rem !important;
+    }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+    .handwritten-text {
+        font-size: 1.15rem !important;
+        line-height: 1.7 !important;
+    }
+}
