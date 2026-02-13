@@ -52,6 +52,150 @@ body {
     position: relative;
 }
 
+/* NEW: Floating Flowers Container (like bubbles) */
+.floating-flowers-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.floating-flower {
+    position: absolute;
+    font-size: 2.5rem;
+    opacity: 0;
+    animation: floatFlowerUp 15s infinite ease-in-out;
+    filter: drop-shadow(0 4px 8px rgba(212, 57, 108, 0.3));
+}
+
+@keyframes floatFlowerUp {
+    0% {
+        transform: translateY(100vh) translateX(0px) rotate(0deg) scale(1);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
+    }
+    50% {
+        transform: translateY(50vh) translateX(30px) rotate(180deg) scale(1.1);
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(-100px) translateX(-20px) rotate(360deg) scale(0.9);
+        opacity: 0;
+    }
+}
+
+/* NEW: Romantic Sparkles */
+.sparkles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+    overflow: hidden;
+}
+
+.sparkle {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: twinkle 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px rgba(255, 235, 59, 0.6));
+}
+
+.sparkle-1 {
+    top: 15%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.sparkle-2 {
+    top: 25%;
+    right: 15%;
+    animation-delay: 0.7s;
+}
+
+.sparkle-3 {
+    bottom: 30%;
+    left: 10%;
+    animation-delay: 1.4s;
+}
+
+.sparkle-4 {
+    bottom: 20%;
+    right: 25%;
+    animation-delay: 2.1s;
+}
+
+.sparkle-5 {
+    top: 40%;
+    left: 5%;
+    animation-delay: 2.8s;
+}
+
+.sparkle-6 {
+    top: 60%;
+    right: 8%;
+    animation-delay: 3.5s;
+}
+
+@keyframes twinkle {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2) rotate(45deg);
+    }
+}
+
+/* NEW: Roses around envelope */
+.envelope-roses {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.rose {
+    position: absolute;
+    font-size: 2rem;
+    animation: roseFloat 3s ease-in-out infinite;
+    filter: drop-shadow(0 3px 8px rgba(212, 57, 108, 0.4));
+}
+
+.rose-top-left {
+    top: -40px;
+    left: -40px;
+    animation-delay: 0s;
+}
+
+.rose-top-right {
+    top: -40px;
+    right: -40px;
+    animation-delay: 1s;
+}
+
+@keyframes roseFloat {
+    0%, 100% {
+        transform: translateY(0px) rotate(-10deg);
+    }
+    50% {
+        transform: translateY(-8px) rotate(10deg);
+    }
+}
+
 /* Floating Hearts Background */
 .hearts-container {
     position: fixed;
@@ -612,6 +756,11 @@ section.active {
         font-size: 16px;
         -webkit-text-size-adjust: 100%;
         -ms-text-size-adjust: 100%;
+    }
+    
+    /* Reduce sparkles on mobile */
+    .sparkle {
+        font-size: 1rem;
     }
     
     /* Text sizing for mobile */
