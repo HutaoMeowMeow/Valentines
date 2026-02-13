@@ -49,6 +49,25 @@ function createFloatingFlowers() {
     }
 }
 
+// NEW: Generate floating petals for letter page
+function createFloatingPetals() {
+    const container = document.getElementById('floatingPetalsContainer');
+    if (!container) return;
+    
+    const petals = ['🌸', '🌺', '🌷', '🏵️'];
+    const petalCount = 6; // Number of petals floating
+    
+    for (let i = 0; i < petalCount; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'floating-petal';
+        petal.textContent = petals[Math.floor(Math.random() * petals.length)];
+        petal.style.left = Math.random() * 100 + '%';
+        petal.style.animationDelay = Math.random() * 12 + 's';
+        petal.style.animationDuration = (10 + Math.random() * 4) + 's';
+        container.appendChild(petal);
+    }
+}
+
 function createTextHearts(container) {
     // Create text-specific floating hearts
     for (let i = 0; i < 8; i++) {
@@ -84,6 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('=== PAGE LOADED ===');
     createFloatingHearts();
     createFloatingFlowers(); // Add floating flowers
+    createFloatingPetals(); // Add floating petals for letter page
     
     // Wait a bit for DOM to be fully ready
     setTimeout(() => {
