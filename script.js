@@ -30,6 +30,25 @@ function createFloatingHearts() {
     }, 2000);
 }
 
+// NEW: Generate floating flowers like bubbles
+function createFloatingFlowers() {
+    const container = document.getElementById('floatingFlowersContainer');
+    if (!container) return;
+    
+    const flowers = ['🌸', '🌺', '🌷', '🌹', '🏵️', '🌼'];
+    const flowerCount = 8; // Number of flowers floating up
+    
+    for (let i = 0; i < flowerCount; i++) {
+        const flower = document.createElement('div');
+        flower.className = 'floating-flower';
+        flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+        flower.style.left = Math.random() * 100 + '%';
+        flower.style.animationDelay = Math.random() * 15 + 's';
+        flower.style.animationDuration = (12 + Math.random() * 6) + 's';
+        container.appendChild(flower);
+    }
+}
+
 function createTextHearts(container) {
     // Create text-specific floating hearts
     for (let i = 0; i < 8; i++) {
@@ -64,6 +83,7 @@ function createTextHearts(container) {
 document.addEventListener('DOMContentLoaded', () => {
     console.log('=== PAGE LOADED ===');
     createFloatingHearts();
+    createFloatingFlowers(); // Add floating flowers
     
     // Wait a bit for DOM to be fully ready
     setTimeout(() => {
